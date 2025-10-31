@@ -1,190 +1,335 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio</title>
   <style>
-    :root{
-      --bg:#0f1724; /* dark navy */
-      --card:#0b1220;
-      --muted:#94a3b8;
-      --accent:#38bdf8;
-      --glass: rgba(255,255,255,0.04);
-      --radius:14px;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
-    *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#071024 0%, #081426 60%);color:#e6eef8;min-height:100vh;line-height:1.45}
-    .container{max-width:1000px;margin:36px auto;padding:24px}
-
-    header{display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .avatar{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;color:#062036;box-shadow:0 6px 24px rgba(8,12,20,0.6)}
-    h1{margin:0;font-size:26px}
-    p.lead{margin:6px 0 0;color:var(--muted)}
-
-    main{display:grid;grid-template-columns:1fr 320px;gap:22px;margin-top:24px}
-
-    
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:var(--radius);box-shadow:0 6px 30px rgba(0,0,0,0.6);backdrop-filter: blur(6px)}
-    .about h2{margin-top:0}
-
-    .skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
-    .skill{background:var(--glass);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--muted)}
-
-    .projects{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
-    .project{background:#051024;padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);display:flex;gap:12px;align-items:center}
-    .thumb{width:84px;height:60px;border-radius:8px;background:linear-gradient(135deg,#0ea5e9,#7c3aed)}
-    .proj-info h3{margin:0;font-size:16px}
-    .proj-info p{margin:6px 0 0;color:var(--muted);font-size:13px}
-    .proj-links{margin-top:8px}
-    .btn{display:inline-block;padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);font-size:13px;text-decoration:none;color:var(--accent)}
-
-    /* Right column */
-    .contact h3{margin-top:0}
-    .meta{background:var(--card);padding:14px;border-radius:12px}
-    .meta p{margin:6px 0;color:var(--muted)}
-
-    footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
-
-    /* Responsive */
-    @media (max-width:880px){
-      main{grid-template-columns:1fr}
-      .avatar{width:62px;height:62px}
+    body {
+      background: #081b29; color: #ededed;
     }
 
-    /* small utilities */
-    .row{display:flex;gap:12px;align-items:center}
-    .chip{padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
-    .space{height:12px}
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: #081b29; display: flex; justify-content: space-between;
+      align-items: center; padding: 20px 60px; z-index: 100;
+    }
+    .logo {
+      font-size: 25px; color: #00abf0; font-weight: 600; text-decoration: none;
+    }
+    nav a {
+      color: #ededed; text-decoration: none;
+      margin-left: 30px; font-size: 18px; transition: .3s;
+    }
+    nav a:hover { color: #00abf0; }
 
-    form input, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    form label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
-    form button{margin-top:8px;padding:10px 12px;border-radius:10px;border:none;background:var(--accent);color:#062036;font-weight:600}
+    section {
+      min-height: 100vh;
+      padding: 100px 60px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
+    /* HOME */
+    .home-content { max-width: 600px; }
+    .home-content h1 { font-size: 45px; font-weight: 700; line-height: 1.2; }
+    .home-content h3 { font-size: 28px; font-weight: 700; color: #00abf0; }
+    .home-content p { margin: 20px 0 40px; font-size: 16px; }
+
+    .social-icons a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border: 2px solid #00abf0;
+      border-radius: 50%; font-size: 20px; color: #00abf0;
+      text-decoration: none; margin-right: 10px; transition: 0.3s;
+    }
+    .social-icons a:hover {
+      background: #00abf0; color: #081b29;
+    }
+
+    .btn-box {
+      display: inline-block; padding: 12px 28px; background: #00abf0;
+      border-radius: 40px; font-size: 16px; color: #081b29;
+      text-decoration: none; font-weight: 600; letter-spacing: 1px;
+      transition: 0.3s;
+    }
+    .btn-box:hover { box-shadow: 0 0 10px #00abf0; }
+
+    .home-img {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 8px solid #00abf0;
+      box-shadow: 0 0 30px #00abf0;
+      margin-top: 30px;
+    }
+    .home-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ABOUT */
+    .about {
+      background: #0a2433;
+      display: flex; align-items: center; justify-content: center;
+      padding: 100px 60px;
+    }
+    .about-content { max-width: 800px; text-align: left; }
+    .about-content h2 { font-size: 40px; margin-bottom: 20px; }
+    .about-content span { color: #00abf0; }
+    .about-content p {
+      font-size: 16px; color: #ededed; line-height: 1.6;
+    }
+
+    /* SKILLS */
+    .skills {
+      background: #081b29; color: #ededed;
+      display: flex; justify-content: space-between;
+      padding: 100px 60px; flex-wrap: wrap;
+    }
+    .skills .technical, .skills .professional { width: 45%; }
+    .skills h2 { font-size: 35px; color: #00abf0; margin-bottom: 20px; }
+
+    .bar { margin-bottom: 15px; }
+    .bar p { margin-bottom: 5px; }
+    .progress {
+      width: 100%; background: #0f2e41; height: 10px;
+      border-radius: 5px; overflow: hidden;
+    }
+    .progress span {
+      display: block; height: 10px; background: #00abf0; border-radius: 5px;
+    }
+
+    .circle { text-align: center; margin-bottom: 20px; }
+    .circle h3 { font-size: 18px; margin-top: 10px; }
+
+    /* PROJECTS */
+    .projects {
+      background: #0a2433;
+      padding: 100px 60px;
+      text-align: center;
+    }
+    .projects h2 {
+      font-size: 40px;
+      margin-bottom: 40px;
+      color: #00abf0;
+    }
+    .project-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .project-card {
+      background: #0f2e41;
+      border-radius: 15px;
+      width: 300px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px #00abf0;
+    }
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .project-card .info {
+      padding: 20px;
+    }
+    .project-card h3 {
+      color: #00abf0;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+    .project-card p {
+      font-size: 14px;
+      color: #ededed;
+    }
+
+    /* CONTACT */
+    .contact {
+      background: #081b29; color: #ededed; padding: 100px 60px;
+    }
+    .contact h2 { font-size: 40px; margin-bottom: 10px; }
+    .contact span { color: #00abf0; }
+    .contact p { margin-bottom: 20px; }
+
+    form {
+      display: flex; flex-direction: column;
+      width: 100%; max-width: 500px;
+    }
+    input, textarea {
+      background: #0f2e41; border: none; margin: 10px 0;
+      padding: 10px; border-radius: 5px;
+      color: #ededed; font-size: 16px;
+    }
+    textarea { resize: none; height: 120px; }
+
+    button {
+      background: #00abf0; border: none; color: #081b29;
+      padding: 12px; border-radius: 25px; cursor: pointer;
+      font-weight: 600; transition: 0.3s;
+    }
+    button:hover { box-shadow: 0 0 10px #00abf0; }
+
+    footer {
+      text-align: center; padding: 20px;
+      background: #081b29; color: #ededed; font-size: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header { flex-direction: column; padding: 15px 30px; }
+      nav { margin-top: 10px; }
+      nav a { margin: 0 10px; font-size: 16px; }
+      section { flex-direction: column; padding: 80px 30px 0; text-align: center; }
+      .home-content h1 { font-size: 35px; }
+      .home-content h3 { font-size: 22px; }
+      .home-img { width: 200px; height: 200px; margin-top: 20px; }
+      .skills .technical, .skills .professional { width: 100%; margin-bottom: 40px; }
+      .about, .skills, .contact, .projects { padding: 80px 30px; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <div class="avatar">A</div>
-        <div>
-          <h1>Archie</h1>
-          <p class="lead">IT Student — passionate about web development, networking, and automation.</p>
+  <header>
+    <a href="#" class="logo">Portfolio</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HOME -->
+  <section id="home">
+    <div class="home-content">
+      <h3>Hello, It's Me</h3>
+      <h1>Archie</h1>
+      <h3>And I'm a <span style="color:#00abf0">Web Developer</span></h3>
+      <p>I am an 2nd Year IT student in Central Philippine State Univerty Moises Padilla Campus</p>
+      <div class="social-icons">
+        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-whatsapp"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-tiktok"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
+      </div>
+      <a href="#about" class="btn-box">More About Me</a>
+    </div>
+    <div class="home-img">
+      <img src="me.jpeg" alt="Archie Profile" />
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-content">
+      <h2>About<span> Me</span></h2>
+      <h3>Archie</h3>
+      <p>I am an Information Technology student passionate about creating modern, responsive, and user-friendly websites. I specialize in HTML and CSS. I also love designing with Figma, Adobe Photoshop, and Premiere Pro to craft visually appealing and creative projects. I enjoy combining design and code to bring ideas to life. My goal is to continue learning, improving my skills, and contributing to exciting and innovative web projects.
+ </p>
+      <a href="#skills" class="btn-box">My Skills</a>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <div class="technical">
+      <h2>Technical Skills</h2>
+      <div class="bar"><p>HTML</p><div class="progress"><span style="width:90%;"></span></div></div>
+      <div class="bar"><p>Figma</p><div class="progress"><span style="width:70%;"></span></div></div>
+      <div class="bar"><p>Adobe Photoshop</p><div class="progress"><span style="width:60%;"></span></div></div>
+      <div class="bar"><p>CSS</p><div class="progress"><span style="width:50%;"></span></div></div>
+      <div class="bar"><p>Premiere Pro</p><div class="progress"><span style="width:75%;"></span></div></div>
+    </div>
+    <div class="professional">
+      <h2>Professional Skills</h2>
+      <div class="circle"><h3>Creativity - 90%</h3></div>
+      <div class="circle"><h3>Communication - 80%</h3></div>
+      <div class="circle"><h3>Problem Solving - 75%</h3></div>
+      <div class="circle"><h3>Teamwork - 85%</h3></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projects">
+    <h2>My <span>Projects</span></h2>
+    <div class="project-container">
+      <div class="project-card">
+        <img src="Pic1.jpg" alt="Project 1">
+        <div class="info">
+          <h3>Banner</h3>
+          <p></p>
         </div>
       </div>
-      <div class="row">
-        <a class="chip" href="#contact">Contact</a>
-        <a class="chip" href="#projects">Projects</a>
+      <div class="project-card">
+        <img src="pic2.jpg" alt="Project 2">
+        <div class="info">
+          <h3>Chest Board</h3>
+          <p></p>
+        </div>
       </div>
-    </header>
-
-    <main>
-      <section class="card about">
-        <h2>About me</h2>
-        <p>Hi — I'm Archie, an Information Technology student focused on building practical software and learning modern tools. I enjoy turning problems into clean, working solutions and improving processes through automation and good design.</p>
-
-        <div class="space"></div>
-        <h3>Skills</h3>
-        <div class="skills">
-          <div class="skill">HTML &amp; CSS</div>
-          <div class="skill">JavaScript</div>
-          <div class="skill">PHP &amp; MySQL</div>
-          <div class="skill">Figma</div>
-          <div class="skill">Adobe Photoshop</div>
-          <div class="skill">Adobe Premiere Pro</div>
-          
+      <div class="project-card">
+        <img src="Pic3.jpg" alt="Project 3">
+        <div class="info">
+          <h3>Product</h3>
+          <p></p>
         </div>
-
- 
-
-        <video src= "https://youtu.be/j86rOIsiZpk?si=TimARV-Irfs2X-0X" alt="my video" width="100" height="100" controls></video>
-        
-        
-        
-        
-      <aside>
-        <div class="card meta">
-          <h3>Contact</h3>
-          <p>Email: <strong>archie@example.com</strong></p>
-          <p>Location: Philippines</p>
-          <p>Availability: Open to internships &amp; projects</p>
-
-          <div class="space"></div>
-          <h3>Education</h3>
-          <p>Bachelor / Diploma in Information Technology (in progress)</p>
-
-          <div class="space"></div>
-          <h3>Connect</h3>
-          <p class="lead">Links</p>
-          <div class="row" style="margin-top:8px">
-            <a class="btn" href="https://www.facebook.com/share/1AT1w8S2Ep/">Facebook</a>
-            <a class="btn" href="#">Instagram</a>
-            <a class="btn" href="#">Tiktok</a>
-          </div>009s
+      </div>
+      <div class="project-card">
+        <img src="Pic4.jpg" alt="Project 4">
+        <div class="info">
+          <h3>Video Editing</h3>
+          <p></p>
         </div>
+         </div>
+        <div class="project-card">
+        <img src="Pic5.jpg" alt="Project 5">
+        <div class="info">
+          <h3>Figma E-commerce</h3>
+          <p></p>
+      </div>
+          </div>
+  </section>
 
-        <div class="space"></div>
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div>
+      <h2>Contact <span>Me</span></h2>
+      <p>Let's work together! I'm glad you've visited my personal portfolio website. If you have any questions or would like to collaborate, feel free to contact me below.</p>
+      <form>
+        <input type="text" placeholder="Enter Your Name" required>
+        <input type="email" placeholder="Enter Your Email" required>
+        <textarea placeholder="Enter Your Message" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+      <div class="social-icons" style="margin-top:20px;">
+        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-whatsapp"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-tiktok"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
+      </div>
+    </div>
+  </section>
 
-        <div class="card" id="contact">
-          <h3>Send a message</h3>
-          <form onsubmit="handleSubmit(event)">
-            <label for="name">Your name</label>
-            <input id="name" name="name" placeholder="e.g. Juan" required />
+  <footer>
+    <p>Developed by Archie |</p>
+  </footer>
 
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@mail.com" required />
-
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="4" placeholder="Hi Archie, ..." required></textarea>
-
-            <button type="submit">Send</button>
-          </form>
-          <p id="note" style="margin-top:10px;color:var(--muted);font-size:13px">This form does not actually send emails in this static demo.</p>
-        </div>
-      </aside>
-    </main>
-
-    <footer>
-      <p>Built by Archie — feel free to edit this file. • Last updated: 2025</p>
-    </footer>
-  </div>
-
-  <script>
-    function handleSubmit(e){
-      e.preventDefault();
-      const name=document.getElementById('name').value||'Friend';
-      const note=document.getElementById('note');
-      note.textContent = `Thanks ${name}! This demo doesn't send messages, but you can copy the form handler to your backend.`;
-    }
-  </script>
-  <!-- Add this inside <body>, for example just before </footer> -->
-<div style="text-align:center; margin-top:20px;">
-  <button onclick="toggleTheme()" 
-          style="padding:10px 14px; border:none; border-radius:8px; background:#38bdf8; color:#062036; font-weight:600;">
-    Change Theme Color
-  </button>
-</div>
-
-<script>
-  const themes = [
-    {bg: "#0f1724", accent: "#38bdf8"},   // Default blue
-    {bg: "#1e1e2f", accent: "#f472b6"},   // Pink
-    {bg: "#081c15", accent: "#34d399"},   // Green
-    {bg: "#3b0764", accent: "#a78bfa"},   // Purple
-  ];
-  let currentTheme = 0;
-
-  function toggleTheme() {
-    currentTheme = (currentTheme + 1) % themes.length;
-    const root = document.documentElement;
-    root.style.setProperty("--bg", themes[currentTheme].bg);
-    root.style.setProperty("--accent", themes[currentTheme].accent);
-    document.body.style.background = `linear-gradient(180deg, ${themes[currentTheme].bg} 0%, #081426 60%)`;
-  }
-</script>
-
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
